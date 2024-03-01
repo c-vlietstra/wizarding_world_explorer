@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wizarding_world_explorer/models/navigation.dart';
+import 'package:wizarding_world_explorer/providers/current_screen_provider.dart';
 import 'package:wizarding_world_explorer/services/navigator_services.dart';
 import 'package:wizarding_world_explorer/widgets/collapsing_list_tile.dart';
 
@@ -74,6 +75,8 @@ class _CollapsingNavigationDrawerState
                       onTap: () {
                         ref.read(selectedIndexProvider.notifier).state =
                             counter;
+                        
+                        ref.read(currentScreenProvider.notifier).state = navigationItems[counter].screen;
                       },
                       title: navigationItems[counter].title,
                       icon: navigationItems[counter].icon,

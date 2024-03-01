@@ -1,5 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import 'package:wizarding_world_explorer/screens/home_screen.dart';
+import 'package:wizarding_world_explorer/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -28,7 +28,7 @@ class SplashPageState extends State<SplashPage> {
       ),
       backgroundImage: const AssetImage('assets/images/splash_screen_bg.png'),
       showLoader: false,
-      navigator: const HomePage(),
+      navigator: const MainPage(),
       durationInSeconds: 5,
     );
   }
