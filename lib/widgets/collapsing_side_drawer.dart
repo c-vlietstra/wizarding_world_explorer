@@ -6,7 +6,9 @@ import 'package:wizarding_world_explorer/services/navigator_services.dart';
 import 'package:wizarding_world_explorer/widgets/collapsing_list_tile.dart';
 
 class CollapsingNavigationDrawer extends ConsumerStatefulWidget {
-  const CollapsingNavigationDrawer({super.key});
+  final WidgetRef ref;
+
+  const CollapsingNavigationDrawer({required this.ref, super.key});
 
   @override
   ConsumerState<CollapsingNavigationDrawer> createState() =>
@@ -62,12 +64,16 @@ class _CollapsingNavigationDrawerState
               Expanded(
                 child: ListView.separated(
                   separatorBuilder: (context, counter) {
-                    return const Divider(height: 12.0);
+                    return Divider(
+                      height: 12.0,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    );
                   },
                   itemBuilder: (context, counter) {
                     return CollapsingListTile(
                       onTap: () {
-                        ref.read(selectedIndexProvider.notifier).state = counter;
+                        ref.read(selectedIndexProvider.notifier).state =
+                            counter;
                       },
                       title: navigationItems[counter].title,
                       icon: navigationItems[counter].icon,

@@ -17,4 +17,5 @@ List<NavigationModel> navigationItems = [
   NavigationModel(title: 'Elixirs', icon: FontAwesomeIcons.flaskVial),
   NavigationModel(title: 'Ingredients', icon: FontAwesomeIcons.seedling),
   NavigationModel(title: 'Wizards', icon: FontAwesomeIcons.hatWizard),
+  NavigationModel(title: 'Settings', icon: FontAwesomeIcons.userGear),
 ];

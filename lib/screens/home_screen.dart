@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wizarding_world_explorer/providers/current_screen_provider.dart';
 import 'package:wizarding_world_explorer/widgets/collapsing_side_drawer.dart';
 
 class HomePage extends ConsumerWidget {
@@ -7,6 +8,8 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentScreen = ref.watch(currentScreenProvider.notifier).state;
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wizarding World Explorer'),
@@ -15,8 +18,8 @@ class HomePage extends ConsumerWidget {
       ),
       body: Stack(
         children: <Widget>[
-          Container(),
-          const CollapsingNavigationDrawer()
+          currentScreen,
+          CollapsingNavigationDrawer(ref: ref)
         ],
       )
     );
