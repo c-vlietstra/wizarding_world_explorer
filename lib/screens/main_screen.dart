@@ -8,7 +8,7 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentScreen = ref.watch(currentScreenProvider.notifier).state;
+    final currentScreen = ref.watch(currentScreenProvider);
     
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +19,7 @@ class MainPage extends ConsumerWidget {
       body: Stack(
         children: <Widget>[
           currentScreen,
-          CollapsingNavigationDrawer(ref: ref)
+          const CollapsingNavigationDrawer()
         ],
       )
     );

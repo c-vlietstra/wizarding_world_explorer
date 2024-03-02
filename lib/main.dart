@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wizarding_world_explorer/screens/main_screen.dart';
+import 'package:wizarding_world_explorer/screens/setup_screen.dart';
 import 'package:wizarding_world_explorer/screens/splash_screen.dart';
 import 'package:wizarding_world_explorer/services/theme_service.dart';
 import 'package:wizarding_world_explorer/theme/color_schemes.dart';
@@ -28,6 +29,7 @@ class MyApp extends ConsumerWidget {
       routes: {
         '/' : (context) => const SplashPage(),
         '/main' : (context) => const MainPage(),
+        '/setup' : (context) => const SetupPage(),
       },
     );
   }
