@@ -1,6 +1,8 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:wizarding_world_explorer/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:wizarding_world_explorer/screens/setup_screen.dart';
+import 'package:wizarding_world_explorer/services/shared_preferences_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -10,6 +12,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
+  bool isSetupCompleted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    SharedPreferencesService.instance.init().then((_) {
+      setState(() {
+        isSetupCompleted = SharedPreferencesService.instance.isSetupCompleted();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
@@ -28,7 +43,7 @@ class SplashPageState extends State<SplashPage> {
       ),
       backgroundImage: const AssetImage('assets/images/splash_screen_bg.png'),
       showLoader: false,
-      navigator: const MainPage(),
+      navigator: (isSetupCompleted) ? const MainPage() : const SetupPage(),
       durationInSeconds: 5,
     );
   }

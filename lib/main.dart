@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wizarding_world_explorer/screens/main_screen.dart';
 import 'package:wizarding_world_explorer/screens/setup_screen.dart';
 import 'package:wizarding_world_explorer/screens/splash_screen.dart';
-import 'package:wizarding_world_explorer/services/theme_service.dart';
+import 'package:wizarding_world_explorer/providers/theme_provider.dart';
 import 'package:wizarding_world_explorer/theme/color_schemes.dart';
 
 void main() {
@@ -20,12 +20,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final themeMode = ref.watch(themeModeProvider);
+    ref.read(themeModeProvider.notifier).loadThemeMode();
     
     return MaterialApp(
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      themeMode: themeMode,
+      themeMode: ref.watch(themeModeProvider) ?? ThemeMode.system,
       routes: {
         '/' : (context) => const SplashPage(),
         '/main' : (context) => const MainPage(),
