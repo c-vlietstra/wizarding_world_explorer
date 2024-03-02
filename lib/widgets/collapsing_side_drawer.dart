@@ -7,9 +7,8 @@ import 'package:wizarding_world_explorer/services/navigator_services.dart';
 import 'package:wizarding_world_explorer/widgets/collapsing_list_tile.dart';
 
 class CollapsingNavigationDrawer extends ConsumerStatefulWidget {
-  final WidgetRef ref;
 
-  const CollapsingNavigationDrawer({required this.ref, super.key});
+  const CollapsingNavigationDrawer({super.key});
 
   @override
   ConsumerState<CollapsingNavigationDrawer> createState() =>
@@ -21,8 +20,8 @@ class _CollapsingNavigationDrawerState
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> widthAnimation;
-  final double maxWidth = 210;
-  final double minWidth = 60;
+  final double maxWidth = 60;
+  final double minWidth = 210;
 
   @override
   void initState() {
@@ -91,8 +90,8 @@ class _CollapsingNavigationDrawerState
                 onTap: () {
                   ref.read(isCollapsedProvider.notifier).state = !isCollapsed;
                   isCollapsed
-                      ? _animationController.reverse()
-                      : _animationController.forward();
+                      ? _animationController.forward()
+                      : _animationController.reverse();
                 },
                 child: AnimatedIcon(
                   progress: _animationController,
