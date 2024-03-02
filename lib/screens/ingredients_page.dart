@@ -10,6 +10,10 @@ class IngredientsPage extends StatefulWidget {
 class _IngredientsPageState extends State<IngredientsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Column(
+      children: [
+        Text('Ingredients Page')
+      ],
+    );
   }
 }

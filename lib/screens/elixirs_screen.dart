@@ -10,6 +10,10 @@ class ElixirsPage extends StatefulWidget {
 class _ElixirsPageState extends State<ElixirsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Column(
+      children: [
+        Text('Elixirs Page')
+      ],
+    );
   }
 }
