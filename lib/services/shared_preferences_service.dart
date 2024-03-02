@@ -18,6 +18,8 @@ class SharedPreferencesService {
   static final SharedPreferencesService _instance =
       SharedPreferencesService._privateConstructor();
 
+  static SharedPreferencesService get instance => _instance;
+
   /// Factory constructor to access the singleton instance.
   factory SharedPreferencesService() {
     return _instance;
