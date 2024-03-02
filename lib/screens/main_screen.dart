@@ -9,19 +9,23 @@ class MainPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentScreen = ref.watch(currentScreenProvider);
-    
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wizarding World Explorer'),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        elevation: 8.0,
-      ),
-      body: Stack(
-        children: <Widget>[
-          currentScreen,
-          const CollapsingNavigationDrawer()
-        ],
-      )
-    );
+        appBar: AppBar(
+          title: const Text('Wizarding World Explorer'),
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          elevation: 8.0,
+        ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+                margin: const EdgeInsets.only(
+                  left: 65,
+                  right: 10,
+                ),
+                child: currentScreen),
+            const CollapsingNavigationDrawer()
+          ],
+        ));
   }
 }

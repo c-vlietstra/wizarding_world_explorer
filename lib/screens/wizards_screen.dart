@@ -10,6 +10,10 @@ class WizardsPage extends StatefulWidget {
 class _WizardsPageState extends State<WizardsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Column(
+      children: [
+        Text('Wizards Page')
+      ],
+    );
   }
 }
