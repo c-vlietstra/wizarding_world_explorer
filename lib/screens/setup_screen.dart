@@ -148,6 +148,7 @@ class _SetupPageState extends ConsumerState<SetupPage> {
                             .setSetupCompleted(true);
 
                         // Update the themeModeProvider with the new theme mode
+                        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
                         ref.read(themeModeProvider.notifier).state = preferredThemeMode;
 
                         // Use the NavigationController to navigate
