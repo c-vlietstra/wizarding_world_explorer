@@ -44,5 +44,6 @@ Use the app to explore the different facets of the wizarding world. Navigate thr
 
 - Flutter
 - Riverpod for state management
-- Harry Potter API (if applicable)
+- Harry Potter API
 - FontAwesome for icons
+- PrateekSharma1712 (github user)
