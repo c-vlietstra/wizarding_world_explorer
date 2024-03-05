@@ -3,6 +3,7 @@ import 'package:wizarding_world_explorer/models/house.dart';
 import 'package:wizarding_world_explorer/models/ingredient.dart';
 import 'package:wizarding_world_explorer/models/spell.dart';
 import 'package:wizarding_world_explorer/models/wizard.dart';
+import 'package:wizarding_world_explorer/models/elixir.dart' as elixir;
 
 // This file contains constants, enums, and extension methods for the Wizarding World Explorer app.
 // It includes API endpoints, image paths for houses, wizards, and traits, and mappings between API endpoints and model classes.
@@ -38,13 +39,13 @@ extension ApiEndpointsExtension on ApiEndpoints {
       case ApiEndpoints.spells:
         return 'spells';
       case ApiEndpoints.wizard:
-        return 'characters/$id';
+        return 'wizards/$id';
       case ApiEndpoints.wizards:
-        return 'characters';
+        return 'wizards';
       case ApiEndpoints.elixir:
-        return 'potions/$id';
+        return 'elixirs/$id';
       case ApiEndpoints.elixirs:
-        return 'potions';
+        return 'elixirs';
       case ApiEndpoints.ingredient:
         return 'ingredients/$id';
       case ApiEndpoints.ingredients:
@@ -77,8 +78,8 @@ final Map<ApiEndpoints, Function> endpointToModel = {
   ApiEndpoints.spells: Spell.fromJson,
   ApiEndpoints.wizard: Wizard.fromJson,
   ApiEndpoints.wizards: Wizard.fromJson,
-  ApiEndpoints.elixir: Elixir.fromJson,
-  ApiEndpoints.elixirs: Elixir.fromJson,
+  ApiEndpoints.elixir: elixir.Elixir.fromJson,
+  ApiEndpoints.elixirs: elixir.Elixir.fromJson,
   ApiEndpoints.ingredient: Ingredient.fromJson,
   ApiEndpoints.ingredients: Ingredient.fromJson,
 };
@@ -181,4 +182,28 @@ const Map<TraitName, String> traitImages = {
   TraitName.ambition: 'assets/images/traits/ambition.webp',
   TraitName.cunning: 'assets/images/traits/cunning.webp',
   TraitName.pride: 'assets/images/traits/pride.webp',
+};
+
+enum SearchParams {
+  name,
+  difficulty,
+  ingredient,
+  inventorFullName,
+  manufacturer,
+  type,
+  incantation,
+  firstName,
+  lastName,
+}
+
+// A map to hold the display names of the search parameters
+final Map<SearchParams, String> searchParamNames = {
+  SearchParams.name: 'Name',
+  SearchParams.difficulty: 'Difficulty',
+  SearchParams.ingredient: 'Ingredient',
+  SearchParams.manufacturer: 'Manufacturer',
+  SearchParams.type: 'Type',
+  SearchParams.incantation: 'Incantation',
+  SearchParams.firstName: 'First Name',
+  SearchParams.lastName: 'Last Name',
 };

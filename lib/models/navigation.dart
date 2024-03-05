@@ -5,6 +5,7 @@ import 'package:wizarding_world_explorer/screens/home_screen.dart';
 import 'package:wizarding_world_explorer/screens/houses_screen.dart';
 import 'package:wizarding_world_explorer/screens/ingredients_page.dart';
 import 'package:wizarding_world_explorer/screens/settings_screen.dart';
+import 'package:wizarding_world_explorer/screens/spells_screen.dart';
 import 'package:wizarding_world_explorer/screens/wizards_screen.dart';
 
 // A class representing a navigation item in the application.
@@ -32,6 +33,8 @@ List<NavigationModel> navigationItems = [
   NavigationModel(title: 'Houses', icon: FontAwesomeIcons.fortAwesomeAlt, screen: const HousesPage()),
   // Navigation item for the Elixirs screen.
   NavigationModel(title: 'Elixirs', icon: FontAwesomeIcons.flaskVial, screen: const ElixirsPage()),
+  // Navigation item for the Spells screen.
+  NavigationModel(title: 'Spells', icon: FontAwesomeIcons.wandSparkles, screen: const SpellsPage()),
   // Navigation item for the Ingredients screen.
   NavigationModel(title: 'Ingredients', icon: FontAwesomeIcons.seedling, screen: const IngredientsPage()),
   // Navigation item for the Wizards screen.

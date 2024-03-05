@@ -7,7 +7,7 @@ class Wizard extends Model {
   // A unique identifier for the Wizard.
   final String id;
   // The first name of the Wizard.
-  final String firstName;
+  final String? firstName;
   // The last name of the Wizard.
   final String lastName;
 
@@ -15,7 +15,7 @@ class Wizard extends Model {
   Wizard({
     required this.elixirs,
     required this.id,
-    required this.firstName,
+    this.firstName,
     required this.lastName,
   });
 
