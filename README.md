@@ -6,10 +6,15 @@ Wizarding World Explorer is a Flutter application designed for fans of the magic
 
 ## Features
 
-- **Explore Houses**: Discover the unique characteristics, history, and notable members of each wizarding house.
-- **Discover Spells**: Learn about the spells used in the wizarding world, their effects, and how to pronounce them correctly.
-- **Potion Crafting**: Mix ingredients to create elixirs with magical effects, learning about their properties and uses.
-- **Magical Encyclopedia**: Access detailed information about magical creatures, artifacts, and locations within the wizarding world.
+### Implemented
+
+- **Explore Houses**: Users can discover unique characteristics, history, and notable members of each wizarding house.
+- **State Management**: Utilizes Riverpod for efficient and scalable state management across the application.
+
+### Outstanding
+
+- **User Interactivity**: Enhancing user engagement through interactive quizzes or trivia related to the wizarding world.
+- **Performance Optimization**: Implementing caching, lazy loading, and other optimization techniques for improved app performance.
 
 ## Getting Started
 
