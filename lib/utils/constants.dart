@@ -4,6 +4,9 @@ import 'package:wizarding_world_explorer/models/ingredient.dart';
 import 'package:wizarding_world_explorer/models/spell.dart';
 import 'package:wizarding_world_explorer/models/wizard.dart';
 
+// This file contains constants, enums, and extension methods for the Wizarding World Explorer app.
+// It includes API endpoints, image paths for houses, wizards, and traits, and mappings between API endpoints and model classes.
+
 // Base URL for the Wizard World API.
 const String baseUrl = 'https://wizard-world-api.herokuapp.com';
 
@@ -80,6 +83,7 @@ final Map<ApiEndpoints, Function> endpointToModel = {
   ApiEndpoints.ingredients: Ingredient.fromJson,
 };
 
+// Enum for house names.
 enum HouseName {
   gryffindor,
   hufflepuff,
@@ -87,6 +91,7 @@ enum HouseName {
   slytherin,
 }
 
+// Mapping of house names to their corresponding image paths.
 const Map<HouseName, String> houseImages = {
   HouseName.gryffindor: 'assets/images/houses/gryffindor_house_emblem.webp',
   HouseName.hufflepuff: 'assets/images/houses/hufflepuff_house_emblem.webp',
@@ -94,6 +99,7 @@ const Map<HouseName, String> houseImages = {
   HouseName.slytherin: 'assets/images/houses/slytherin_house_emblem.webp',
 };
 
+// Enum for house head names.
 enum HouseHead {
   mcgonagall,
   sprout,
@@ -108,6 +114,7 @@ enum HouseHead {
   riddle,
 }
 
+// Mapping of house head names to their corresponding image paths.
 const Map<HouseHead, String> houseHeadImages = {
   HouseHead.mcgonagall: 'assets/images/wizards/mcgonagall.webp',
   HouseHead.sprout: 'assets/images/wizards/sprout.webp',
@@ -122,6 +129,7 @@ const Map<HouseHead, String> houseHeadImages = {
   HouseHead.riddle: 'assets/images/wizards/riddle.webp',
 };
 
+// Enum for trait names.
 enum TraitName {
   courage,
   chivalary,
@@ -148,6 +156,7 @@ enum TraitName {
   pride,
 }
 
+// Mapping of trait names to their corresponding image paths.
 const Map<TraitName, String> traitImages = {
   TraitName.courage: 'assets/images/traits/courage.webp',
   TraitName.chivalary: 'assets/images/traits/chivalary.webp',

@@ -6,11 +6,13 @@ import 'package:wizarding_world_explorer/utils/house_heads_images.dart';
 import 'package:wizarding_world_explorer/utils/houses_images.dart';
 import 'package:wizarding_world_explorer/utils/traits_images.dart';
 
+// A custom widget that creates a card for displaying information about a house from the Wizarding World.
 class HousesListCard extends StatelessWidget {
+  // Constructor for the HousesListCard widget.
   const HousesListCard({
     Key? key,
-    required this.houses,
-    required this.index,
+    required this.houses, // A list of House objects.
+    required this.index, // The index of the house to display.
   }) : super(key: key);
 
   final List<House> houses;
@@ -24,6 +26,7 @@ class HousesListCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // ListTile for displaying the name and founder of the house.
             ListTile(
               title: Text(
                 houses[index].name,
@@ -34,6 +37,7 @@ class HousesListCard extends StatelessWidget {
                 style: cardSubtitleStyle(),
               ),
             ),
+            // Image of the house emblem.
             ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(12.0),
@@ -44,6 +48,7 @@ class HousesListCard extends StatelessWidget {
                 ),
               ),
             ),
+            // Title for the house heads section.
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -51,8 +56,9 @@ class HousesListCard extends StatelessWidget {
                 style: cardTitleStyle(),
               ),
             ),
+            // ListView for displaying the house heads.
             SizedBox(
-              height: 200, // Set a fixed height for the ListView
+              height: 200, // Set a fixed height for the ListView.
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: houses[index].heads.length,
@@ -81,6 +87,7 @@ class HousesListCard extends StatelessWidget {
                 },
               ),
             ),
+            // Title for the house traits section.
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -88,8 +95,9 @@ class HousesListCard extends StatelessWidget {
                 style: cardTitleStyle(),
               ),
             ),
+            // ListView for displaying the house traits.
             SizedBox(
-              height: 200, // Set a fixed height for the ListView
+              height: 200, // Set a fixed height for the ListView.
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: houses[index].traits.length,
