@@ -6,8 +6,8 @@ import 'package:wizarding_world_explorer/providers/current_screen_provider.dart'
 import 'package:wizarding_world_explorer/services/navigator_services.dart';
 import 'package:wizarding_world_explorer/widgets/collapsing_list_tile.dart';
 
+// A custom widget that creates a collapsible navigation drawer.
 class CollapsingNavigationDrawer extends ConsumerStatefulWidget {
-
   const CollapsingNavigationDrawer({super.key});
 
   @override
@@ -20,12 +20,13 @@ class _CollapsingNavigationDrawerState
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> widthAnimation;
-  final double maxWidth = 60;
-  final double minWidth = 210;
+  final double maxWidth = 60; // The width of the drawer when collapsed.
+  final double minWidth = 210; // The width of the drawer when expanded.
 
   @override
   void initState() {
     super.initState();
+    // Initialize the animation controller and the width animation.
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
@@ -36,6 +37,7 @@ class _CollapsingNavigationDrawerState
 
   @override
   Widget build(BuildContext context) {
+    // Watch the isCollapsedProvider to determine the state of the drawer.
     final isCollapsed = ref.watch(isCollapsedProvider);
 
     return AnimatedBuilder(
@@ -44,12 +46,13 @@ class _CollapsingNavigationDrawerState
         elevation: 8.0,
         child: Container(
           color: Theme.of(context).colorScheme.primaryContainer,
-          width: widthAnimation.value,
+          width: widthAnimation.value, // The width is determined by the width animation.
           child: Column(
             children: [
               const SizedBox(
                 height: 50,
               ),
+              // The user profile section at the top of the drawer.
               CollapsingListTile(
                 onTap: () {},
                 title: 'User',
@@ -61,6 +64,7 @@ class _CollapsingNavigationDrawerState
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 40.0,
               ),
+              // The list of navigation items.
               Expanded(
                 child: ListView.separated(
                   separatorBuilder: (context, counter) {
@@ -72,6 +76,7 @@ class _CollapsingNavigationDrawerState
                   itemBuilder: (context, counter) {
                     return CollapsingListTile(
                       onTap: () {
+                        // Update the selected index and the current screen when a navigation item is tapped.
                         ref.read(selectedIndexProvider.notifier).state =
                             counter;
                         
@@ -80,14 +85,16 @@ class _CollapsingNavigationDrawerState
                       title: navigationItems[counter].title,
                       icon: navigationItems[counter].icon,
                       animationController: _animationController,
-                      isSelected: ref.watch(selectedIndexProvider) == counter,
+                      isSelected: ref.watch(selectedIndexProvider) == counter, // Highlight the selected item.
                     );
                   },
-                  itemCount: navigationItems.length,
+                  itemCount: navigationItems.length, // The number of navigation items.
                 ),
               ),
+              // The collapse/expand button at the bottom of the drawer.
               InkWell(
                 onTap: () {
+                  // Toggle the isCollapsed state and play the appropriate animation.
                   ref.read(isCollapsedProvider.notifier).state = !isCollapsed;
                   isCollapsed
                       ? _animationController.forward()

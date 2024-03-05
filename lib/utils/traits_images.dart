@@ -1,6 +1,14 @@
 import 'package:wizarding_world_explorer/utils/constants.dart';
 
+// This file contains a function to retrieve the image path associated with a specific trait name.
+// Usage:
+// Import this file into your Dart file.
+// Call the getTraitImagePath function with the trait name as a parameter.
+// Example: String imagePath = getTraitImagePath('courage');
+
+// Function to get the image path for a given trait name.
 String getTraitImagePath(String traitName) {
+  // Convert the trait name to lowercase to ensure case-insensitive matching.
   switch (traitName.toLowerCase()) {
     case 'courage':
       return traitImages[TraitName.courage]!;
@@ -49,6 +57,7 @@ String getTraitImagePath(String traitName) {
     case 'pride':
       return traitImages[TraitName.pride]!;
     default:
-      return 'assets/images/default.png'; // Default image if the trait name doesn't match
+      // Return a default image path if the trait name doesn't match any case.
+      return 'assets/images/traits/default.webp';
   }
 }
