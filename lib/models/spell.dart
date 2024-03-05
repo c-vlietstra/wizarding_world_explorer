@@ -7,28 +7,28 @@ class Spell extends Model {
   // The name of the Spell.
   final String name;
   // The incantation used to cast the Spell.
-  final String incantation;
+  final String? incantation;
   // The effect of the Spell when cast.
   final String effect;
   // A boolean indicating whether the Spell can be cast verbally.
-  final bool canBeVerbal;
+  final bool? canBeVerbal;
   // The type of Spell (e.g., Charm, Curse, Hex).
   final String type;
   // The color of the light emitted by the Spell when cast.
   final String light;
   // The creator of the Spell.
-  final String creator;
+  final String? creator;
 
   // Constructor for the Spell class.
   Spell({
     required this.id,
     required this.name,
-    required this.incantation,
+    this.incantation,
     required this.effect,
-    required this.canBeVerbal,
+    this.canBeVerbal,
     required this.type,
     required this.light,
-    required this.creator,
+    this.creator,
   });
 
   // A factory constructor that creates a Spell instance from a JSON object.

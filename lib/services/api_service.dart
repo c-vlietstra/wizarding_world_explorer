@@ -13,23 +13,36 @@ final apiServiceProvider = Provider<ApiService>((ref) {
 
 class ApiService {
   final String _baseUrl = baseUrl;
+  final Map<String, dynamic> _cache = {}; // Cache for storing API responses.
 
-  /// Fetches data from the specified [endpoint].
+  /// Fetches data from the specified [endpoint] with optional [queryParams].
   ///
-  /// If [id] is provided, fetches a single item. Otherwise, fetches a collection.
+  /// This method first checks if the data is available in the cache. If it is,
+  /// the cached data is returned. Otherwise, it makes a network request to
+  /// fetch the data, caches the result, and then returns it.
   ///
   /// Usage:
   ///
   /// ```dart
   /// final apiService = ref.read(apiServiceProvider);
-  /// final data = await apiService.fetchData<MyModel>(ApiEndpoints.myEndpoint, 'id');
+  /// final data = await apiService.fetchData<MyModel>(ApiEndpoints.myEndpoint, queryParams: {'name': 'value'});
   /// ```
   ///
   /// The [endpoint] parameter should be one of the values from the [ApiEndpoints] enum.
-  /// The [id] parameter is optional and should be used when fetching a single item.
+  /// The [queryParams] parameter is optional and should be used when fetching data with query parameters.
   /// Returns a list of [MyModel] instances if [isCollection] is true, or a single [MyModel] instance otherwise.
-  Future<dynamic> fetchData<T extends Model>(ApiEndpoints endpoint, [String? id]) async {
-    final endpointUrl = '$_baseUrl/${endpoint.url(id)}';
+  /// 
+  Future<dynamic> fetchData<T extends Model>(ApiEndpoints endpoint, {Map<String, String>? queryParams}) async {
+    String endpointUrl = '$_baseUrl/${endpoint.url()}';
+    if (queryParams != null && queryParams.isNotEmpty) {
+      endpointUrl += '${Uri(queryParameters: queryParams)}';
+    }
+
+    // Check if the data is in the cache
+    if (_cache.containsKey(endpointUrl)) {
+      return _cache[endpointUrl];
+    }
+
     try {
       final response = await http.get(Uri.parse(endpointUrl));
 
@@ -37,11 +50,17 @@ class ApiService {
         final data = _validateResponse(response.body, endpoint.isCollection);
         final fromJson = endpointToModel[endpoint] as T Function(Map<String, dynamic>);
 
+        dynamic result;
         if (endpoint.isCollection) {
-          return List<T>.from(data.map((item) => fromJson(item)));
+          result = List<T>.from(data.map((item) => fromJson(item)));
         } else {
-          return fromJson(data);
+          result = fromJson(data);
         }
+
+        // Cache the result
+        _cache[endpointUrl] = result;
+
+        return result;
       } else if (response.statusCode == 404) {
         throw Exception('Resource not found: $endpointUrl');
       } else {
