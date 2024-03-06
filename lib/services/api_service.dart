@@ -87,7 +87,6 @@ dynamic _validateResponse(String responseBody, bool isCollection) {
     if (data is! Map) {
       throw Exception('Expected a map but received: $data');
     }
-    // Add additional validation checks for required keys if needed
   }
   return data;
 }
