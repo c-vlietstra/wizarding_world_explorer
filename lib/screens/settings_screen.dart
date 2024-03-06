@@ -12,7 +12,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        Text('Home Page')
+        Text('Not implemented')
       ],
     );
   }
