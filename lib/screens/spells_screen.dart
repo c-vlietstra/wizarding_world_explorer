@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wizarding_world_explorer/models/spell.dart';
 import 'package:wizarding_world_explorer/providers/search_query_provider.dart';
 import 'package:wizarding_world_explorer/services/api_service.dart';
+import 'package:wizarding_world_explorer/styles/more_text_style.dart';
+import 'package:wizarding_world_explorer/styles/more_text_title.dart';
 import 'package:wizarding_world_explorer/utils/constants.dart';
+import 'package:wizarding_world_explorer/widgets/animated_list_tile.dart';
 
 class SpellsPage extends ConsumerStatefulWidget {
   const SpellsPage({Key? key}) : super(key: key);
@@ -41,8 +44,48 @@ class _SpellsPageState extends ConsumerState<SpellsPage> {
             return ListView.builder(
               itemCount: spells.length,
               itemBuilder: (context, index) {
-                return ListTile(
+                return AnimatedExpansionTile(
                   title: Text(spells[index].name),
+                  subtitle: Text(spells[index].incantation ?? 'None'),
+                  animatedIcon: AnimatedIcons.list_view,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3.0),
+                      child: Text(
+                        'Effect',
+                        style: moreTextTitle(),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        spells[index].effect,
+                        style: moreTextStyle(),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3.0),
+                      child: Text(
+                        'Type',
+                        style: moreTextTitle(),
+                      ),
+                    ),
+                    Text(
+                      spells[index].type,
+                      style: moreTextStyle(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3.0),
+                      child: Text(
+                        'Light',
+                        style: moreTextTitle(),
+                      ),
+                    ),
+                    Text(
+                      spells[index].light,
+                      style: moreTextStyle(),
+                    ),
+                  ],
                 );
               },
             );

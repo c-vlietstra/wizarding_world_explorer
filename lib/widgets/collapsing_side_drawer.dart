@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wizarding_world_explorer/models/navigation.dart';
 import 'package:wizarding_world_explorer/providers/current_screen_provider.dart';
 import 'package:wizarding_world_explorer/services/navigator_services.dart';
@@ -53,16 +52,27 @@ class _CollapsingNavigationDrawerState
                 height: 50,
               ),
               // The user profile section at the top of the drawer.
-              CollapsingListTile(
-                onTap: () {},
-                title: 'User',
-                icon: FontAwesomeIcons.solidCircleUser,
-                animationController: _animationController,
-                isSelected: false,
+              InkWell(
+                onTap: () {
+                  // Toggle the isCollapsed state and play the appropriate animation.
+                  ref.read(isCollapsedProvider.notifier).state = !isCollapsed;
+                  isCollapsed
+                      ? _animationController.forward()
+                      : _animationController.reverse();
+                },
+                child: AnimatedIcon(
+                  progress: _animationController,
+                  icon: AnimatedIcons.menu_close,
+                  size: 42,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
               ),
               Divider(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
-                height: 40.0,
+                height: 12.0,
               ),
               // The list of navigation items.
               Expanded(
@@ -92,24 +102,6 @@ class _CollapsingNavigationDrawerState
                 ),
               ),
               // The collapse/expand button at the bottom of the drawer.
-              InkWell(
-                onTap: () {
-                  // Toggle the isCollapsed state and play the appropriate animation.
-                  ref.read(isCollapsedProvider.notifier).state = !isCollapsed;
-                  isCollapsed
-                      ? _animationController.forward()
-                      : _animationController.reverse();
-                },
-                child: AnimatedIcon(
-                  progress: _animationController,
-                  icon: AnimatedIcons.close_menu,
-                  size: 42,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
-              ),
-              const SizedBox(
-                height: 50.0,
-              ),
             ],
           ),
         ),
