@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wizarding_world_explorer/models/ingredient.dart';
 import 'package:wizarding_world_explorer/providers/search_query_provider.dart';
 import 'package:wizarding_world_explorer/services/api_service.dart';
+import 'package:wizarding_world_explorer/styles/card_title_style.dart';
 import 'package:wizarding_world_explorer/utils/constants.dart';
 
 class IngredientsPage extends ConsumerStatefulWidget {
@@ -41,8 +42,13 @@ class _IngredientsPageState extends ConsumerState<IngredientsPage> {
             return ListView.builder(
               itemCount: ingredients.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(ingredients[index].name),
+                return Card(
+                  child: ListTile(
+                    title: Text(
+                      ingredients[index].name,
+                      style: cardTitleStyle(),
+                    ),
+                  ),
                 );
               },
             );

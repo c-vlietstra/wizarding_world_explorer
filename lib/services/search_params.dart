@@ -1,5 +1,5 @@
 import 'package:wizarding_world_explorer/screens/elixirs_screen.dart';
-import 'package:wizarding_world_explorer/screens/ingredients_page.dart';
+import 'package:wizarding_world_explorer/screens/ingredients_screen.dart';
 import 'package:wizarding_world_explorer/screens/spells_screen.dart';
 import 'package:wizarding_world_explorer/screens/wizards_screen.dart';
 import 'package:wizarding_world_explorer/utils/constants.dart';
